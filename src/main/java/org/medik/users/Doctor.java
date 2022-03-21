@@ -5,6 +5,10 @@ public class Doctor {
     private String name;
     private String speciality;
 
+    public Doctor() {
+        System.out.println("Building the Doctor Object.");
+    }
+
     public int getId() {
         return id;
     }
