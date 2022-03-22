@@ -1,6 +1,11 @@
 package org.medik.users;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Patient {
+    private static final Logger LOGGER = LogManager.getLogger(Patient.class);
+
     private String name;
     private String email;
     private String address;
@@ -13,6 +18,7 @@ public class Patient {
     public Patient(String name, String email) {
         this.name = name;
         this.email = email;
+        LOGGER.info("Patient with the name " + this.name + " and email " + this.email);
     }
 
     public String getName() {
