@@ -3,54 +3,18 @@ package org.medik.users;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Patient {
+public class Patient extends User {
     private static final Logger LOGGER = LogManager.getLogger(Patient.class);
+    private static final String CONSTRUCTOR_MESSAGE = "Thank you, {} for your registry with the email {}";
 
-    private String name;
-    private String email;
-    private String address;
-    private String phoneNumber;
     private String birthday;
     private double weight;
     private double height;
     private String blood;
 
-    public Patient(String name, String email) {
-        this.name = name;
-        this.email = email;
-        LOGGER.info("Patient with the name " + this.name + " and email " + this.email);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public Patient(String email, String name) {
+        super(email, name);
+        LOGGER.info(CONSTRUCTOR_MESSAGE, name, email);
     }
 
     public String getBirthday() {
@@ -61,8 +25,8 @@ public class Patient {
         this.birthday = birthday;
     }
 
-    public double getWeight() {
-        return weight;
+    public String getWeight() {
+        return this.weight + " Kg.";
     }
 
     public void setWeight(double weight) {

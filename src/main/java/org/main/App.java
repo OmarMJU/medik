@@ -12,16 +12,43 @@ public class App {
     public static void main( String[] args ) {
         Calendar calendar = Calendar.getInstance();
 
-        Doctor myDoctor = new Doctor("Panchita", "Pediatra");
-        Patient myPatient = new Patient("Conchita", "conchita@mail.com");
+        /* Doctor Object. */
+        Doctor myDoctor = new Doctor("panchita@mail.com", "Panchita");
+        myDoctor.setPhoneNumber("5578945623");
+        myDoctor.setAddress("Street Thinks, Col. Some col");
+        myDoctor.setId(1);
+        myDoctor.setSpeciality("Pediatrician");
+        myDoctor.setName("Franciasca Tomasa Isidra Del Sagrado Corazon de Jesus Benita");
 
         myDoctor.addAvailableAppointment(calendar.getTime(), "4pm");
         myDoctor.addAvailableAppointment(calendar.getTime(), "3pm");
         myDoctor.addAvailableAppointment(calendar.getTime(), "2pm");
         LOGGER.info(myDoctor.getAvailableAppointment());
 
+        LOGGER.info(myDoctor.getSpeciality());
+        LOGGER.info(myDoctor.getAddress());
+        LOGGER.info(myDoctor.getEmail());
+        LOGGER.info(myDoctor.getId());
+        LOGGER.info(myDoctor.getName());
+        LOGGER.info(myDoctor.getPhoneNumber());
+
         for (Doctor.AvailableAppointment aa : myDoctor.getAvailableAppointment()) {
             LOGGER.info(aa.getDate() + " - " + aa.getTime());
         }
+
+        /* Patient object. */
+        Patient myPatient = new Patient("conchita@mail.com", "Conchita");
+        myPatient.setPhoneNumber("5512345678");
+        myPatient.setBirthday("July 25");
+        myPatient.setBlood("O+");
+        myPatient.setHeight(1.68);
+        myPatient.setWeight(65);
+
+        LOGGER.info(myPatient.getPhoneNumber());
+        LOGGER.info(myPatient.getBirthday());
+        LOGGER.info(myPatient.getBlood());
+        LOGGER.info(myPatient.getHeight());
+        LOGGER.info(myPatient.getWeight());
+
     }
 }

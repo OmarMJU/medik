@@ -6,39 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor {
+public class Doctor extends User {
     private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
     private static final String FORMAT_DATE = "dd/MM/yyyy";
 
     private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<AvailableAppointment>();
     private String speciality;
-    private String name;
-    private int id;
 
-    public Doctor() {
-        LOGGER.info("Creating a new Doctor.");
-    }
-
-    public Doctor(String name, String speciality) {
-        this.name = name;
-        this.speciality = speciality;
-        LOGGER.info("Your doctor is " + this.name + " with the speciality " + this.speciality);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Doctor(String email, String name) {
+        super(email, name);
+        LOGGER.info("The name of your doctor is " + name);
     }
 
     public String getSpeciality() {
