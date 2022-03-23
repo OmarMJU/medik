@@ -23,8 +23,8 @@ public class App {
         myDoctor.addAvailableAppointment(calendar.getTime(), "4pm");
         myDoctor.addAvailableAppointment(calendar.getTime(), "3pm");
         myDoctor.addAvailableAppointment(calendar.getTime(), "2pm");
-        LOGGER.info(myDoctor.getAvailableAppointment());
 
+        LOGGER.info(myDoctor.getAvailableAppointment());
         LOGGER.info(myDoctor.getSpeciality());
         LOGGER.info(myDoctor.getAddress());
         LOGGER.info(myDoctor.getEmail());
@@ -36,6 +36,8 @@ public class App {
             LOGGER.info(aa.getDate() + " - " + aa.getTime());
         }
 
+        LOGGER.info(myDoctor);
+
         /* Patient object. */
         Patient myPatient = new Patient("conchita@mail.com", "Conchita");
         myPatient.setPhoneNumber("5512345678");
@@ -43,12 +45,14 @@ public class App {
         myPatient.setBlood("O+");
         myPatient.setHeight(1.68);
         myPatient.setWeight(65);
+        myPatient.setId(1);
+        myPatient.setAddress("Calle Patito, Col. Animalitos, Del. GAM");
 
         LOGGER.info(myPatient.getPhoneNumber());
         LOGGER.info(myPatient.getBirthday());
         LOGGER.info(myPatient.getBlood());
         LOGGER.info(myPatient.getHeight());
         LOGGER.info(myPatient.getWeight());
-
+        LOGGER.info(myPatient);
     }
 }
