@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 public class User {
     protected static final Logger LOGGER = LogManager.getLogger(User.class);
     private static  final String PHONE_NUMBER_ERROR = "The phone number must be 10 digits";
-
     private String phoneNumber;
     private String address;
     private String email;

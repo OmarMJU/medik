@@ -1,12 +1,8 @@
 package org.medik.users;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class Patient extends User {
-    private static final Logger LOGGER = LogManager.getLogger(Patient.class);
     private static final String CONSTRUCTOR_MESSAGE = "Thank you, {} for your registry with the email {}";
-
+    private static final String KG = "Kg.";
     private String birthday;
     private double weight;
     private double height;
@@ -26,7 +22,7 @@ public class Patient extends User {
     }
 
     public String getWeight() {
-        return this.weight + " Kg.";
+        return this.weight + KG;
     }
 
     public void setWeight(double weight) {

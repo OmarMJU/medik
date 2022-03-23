@@ -1,21 +1,18 @@
 package org.medik.users;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Doctor extends User {
-    private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
-    private static final String FORMAT_DATE = "dd/MM/yyyy";
-
     private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<AvailableAppointment>();
+    private static final String MESSAGE_NAME = "The name of your doctor is {}.";
+    private static final String FORMAT_DATE = "dd/MM/yyyy";
     private String speciality;
 
     public Doctor(String email, String name) {
         super(email, name);
-        LOGGER.info("The name of your doctor is " + name);
+        LOGGER.info(MESSAGE_NAME, name);
     }
 
     public String getSpeciality() {
