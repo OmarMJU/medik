@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.medik.users.Nurse;
 import org.medik.users.Patient;
 import org.medik.users.Doctor;
+import org.medik.users.User;
+
 import java.util.Calendar;
 
 public class App {
@@ -62,5 +64,21 @@ public class App {
         Nurse myNurse = new Nurse("evamaria@mail.com", "Eva Maria");
         myNurse.setSpeciality("Pediatria");
         myNurse.showDataUser();
+
+        /* User object (Anonymous class) */
+        User myUser = new User("omar@mail.com", "Omar") {
+            private static final String DISEASE = "Deviated Spine";
+            private static final String DISEASE_TEXT = "Disease: {}";
+
+            @Override
+            public void showDataUser() {
+                LOGGER.info(DISEASE_TEXT, DISEASE);
+            }
+        };
+
+        LOGGER.info("\n-- OBJETO USER");
+        LOGGER.info(myUser.getName());
+        LOGGER.info(myUser.getEmail());
+        myUser.showDataUser();
     }
 }
