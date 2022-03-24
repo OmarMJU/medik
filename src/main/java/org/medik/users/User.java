@@ -3,8 +3,11 @@ package org.medik.users;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class User {
+public abstract class User {
     protected static final Logger LOGGER = LogManager.getLogger(User.class);
+    protected static final String HOSPITAL_TEXT = "Hospital: {}";
+    protected static final String NAME_TEXT = "Name: {}";
+
     private static  final String PHONE_NUMBER_ERROR = "The phone number must be 10 digits";
     private String phoneNumber;
     private String address;
@@ -75,4 +78,6 @@ public class User {
                 ", id=" + id +
                 '}';
     }
+
+    public abstract void showDataUser();
 }

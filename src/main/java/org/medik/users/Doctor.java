@@ -8,6 +8,9 @@ public class Doctor extends User {
     private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<AvailableAppointment>();
     private static final String MESSAGE_NAME = "The name of your doctor is {}.";
     private static final String FORMAT_DATE = "dd/MM/yyyy";
+    private static final String CEDULA_TEXT = "Cedula: {}";
+    private static final String HOSPITAL = "INCAN";
+    private static final int CEDULA = 12345678;
     private String speciality;
 
     public Doctor(String email, String name) {
@@ -37,6 +40,13 @@ public class Doctor extends User {
                 ", availableAppointments=" + availableAppointments +
                 ", speciality='" + speciality + '\'' +
                 '}';
+    }
+
+    @Override
+    public void showDataUser() {
+        LOGGER.info(NAME_TEXT, this.getName());
+        LOGGER.info(HOSPITAL_TEXT, HOSPITAL);
+        LOGGER.info(CEDULA_TEXT, CEDULA);
     }
 
     // Nested static class.

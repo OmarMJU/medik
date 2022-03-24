@@ -1,6 +1,7 @@
 package org.medik.users;
 
 public class Nurse extends User {
+    private static final String HOSPITAL = "INER";
     private String speciality;
 
     public Nurse(String email, String name) {
@@ -20,5 +21,11 @@ public class Nurse extends User {
         return "Nurse{" + super.toString() +
                 ", speciality='" + speciality + '\'' +
                 '}';
+    }
+
+    @Override
+    public void showDataUser() {
+        LOGGER.info(NAME_TEXT, this.getName());
+        LOGGER.info(HOSPITAL_TEXT, HOSPITAL);
     }
 }
