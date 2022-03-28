@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Doctor extends User {
-    private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<AvailableAppointment>();
-    private static final String MESSAGE_NAME = "The name of your doctor is {}.";
+    private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<>();
     private static final String FORMAT_DATE = "dd/MM/yyyy";
     private static final String CEDULA_TEXT = "Cedula: {}";
     private static final String HOSPITAL = "INCAN";
@@ -15,7 +14,6 @@ public class Doctor extends User {
 
     public Doctor(String email, String name) {
         super(email, name);
-        LOGGER.info(MESSAGE_NAME, name);
     }
 
     public String getSpeciality() {

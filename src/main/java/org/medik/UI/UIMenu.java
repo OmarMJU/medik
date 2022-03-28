@@ -1,15 +1,12 @@
 package org.medik.UI;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.medik.constants.Months;
 import org.medik.users.Patient;
-import org.medik.users.Nurse;
 import org.medik.users.Doctor;
+import org.medik.users.Nurse;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class UIMenu {
-    private static final Logger LOGGER = LogManager.getLogger(UIMenu.class);
+public class UIMenu implements IMenuable {
     private static final String EMAIL_MESSAGE = "Insert your email in format somethig@somemail.com";
     private static final String EMAIL_INCORRECT_MESSAGE = "The email is not valid or not found!";
     private static final String CORRECT_ANSWER_MESSAGE = "Please select a correct answer.";
@@ -19,12 +16,27 @@ public class UIMenu {
     private static final String DOCTOR = "1. Doctor";
     private static final String PATIENT = "2. Patient";
     private static final String NURSE = "3. Nurse";
-    private static Patient patientLogged;
-    private static Doctor doctorLogged;
-    private static Nurse nurseLogged;
-    private static Scanner sc;
+    private static final String EXIT = "0. Exit";
+    public static Patient patientLogged;
+    public static Doctor doctorLogged;
+    public static Nurse nurseLogged;
 
-    public static void showMenu() {
+    public static final String MONTHS[] = {
+            String.valueOf(Months.JANUARY),
+            String.valueOf(Months.FEBRUARY),
+            String.valueOf(Months.MARCH),
+            String.valueOf(Months.APRIL),
+            String.valueOf(Months.MAY),
+            String.valueOf(Months.JUNE),
+            String.valueOf(Months.JULY),
+            String.valueOf(Months.AUGUST),
+            String.valueOf(Months.SEPTEMBER),
+            String.valueOf(Months.OCTOBER),
+            String.valueOf(Months.NOVEMBER),
+            String.valueOf(Months.DECEMBER)
+    };
+
+    public void showMenu() {
         int request;
 
         LOGGER.info(WELCOME_MESSAGE);
@@ -34,8 +46,7 @@ public class UIMenu {
             LOGGER.info(DOCTOR);
             LOGGER.info(PATIENT);
             LOGGER.info(NURSE);
-
-            sc = new Scanner(System.in);
+            LOGGER.info(EXIT);
             request = Integer.parseInt(sc.nextLine());
 
             switch (request) {
@@ -80,7 +91,6 @@ public class UIMenu {
 
         do {
             LOGGER.info(EMAIL_MESSAGE);
-            sc = new Scanner(System.in);
             String email = sc.nextLine();
 
             if (userType == 1) {
@@ -88,6 +98,8 @@ public class UIMenu {
                     if (doctor.getEmail().equals(email)) {
                         emailCorrect = true;
                         doctorLogged = doctor;
+                        UIDoctorMenu doctorMenu = new UIDoctorMenu();
+                        doctorMenu.showMenu();
                     } else {
                         LOGGER.error(EMAIL_INCORRECT_MESSAGE);
                     }
