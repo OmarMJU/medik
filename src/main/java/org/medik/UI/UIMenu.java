@@ -21,21 +21,6 @@ public class UIMenu implements IMenuable {
     public static Doctor doctorLogged;
     public static Nurse nurseLogged;
 
-    public static final String MONTHS[] = {
-            String.valueOf(Months.JANUARY),
-            String.valueOf(Months.FEBRUARY),
-            String.valueOf(Months.MARCH),
-            String.valueOf(Months.APRIL),
-            String.valueOf(Months.MAY),
-            String.valueOf(Months.JUNE),
-            String.valueOf(Months.JULY),
-            String.valueOf(Months.AUGUST),
-            String.valueOf(Months.SEPTEMBER),
-            String.valueOf(Months.OCTOBER),
-            String.valueOf(Months.NOVEMBER),
-            String.valueOf(Months.DECEMBER)
-    };
-
     public void showMenu() {
         int request;
 
