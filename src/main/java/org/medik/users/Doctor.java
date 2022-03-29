@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Doctor extends User {
     private ArrayList<AvailableAppointment> availableAppointments = new ArrayList<>();
+    private static final String ERROR_FORMAT_DATE = "An error in convert to date format";
     private static final String FORMAT_DATE = "dd/MM/yyyy";
     private static final String CEDULA_TEXT = "Cedula: {}";
     private static final String HOSPITAL = "INCAN";
@@ -24,7 +25,7 @@ public class Doctor extends User {
         this.speciality = speciality;
     }
 
-    public void addAvailableAppointment(Date date, String time) {
+    public void addAvailableAppointment(String date, String time) {
         availableAppointments.add(new AvailableAppointment(date, time));
     }
 
@@ -52,10 +53,15 @@ public class Doctor extends User {
         private int id;
         private Date date;
         private String time;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        public AvailableAppointment(Date date, String time) {
-            this.date = date;
-            this.time = time;
+        public AvailableAppointment(String date, String time) {
+            try {
+                this.date = sdf.parse(date);
+                this.time = time;
+            } catch (Exception e) {
+                LOGGER.error(ERROR_FORMAT_DATE, e);
+            }
         }
 
         public int getId() {

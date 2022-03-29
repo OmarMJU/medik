@@ -1,6 +1,11 @@
 package org.medik.UI;
 
+import org.medik.users.Doctor;
+import java.util.ArrayList;
+
 public class UIDoctorMenu implements IMenuable {
+    private static final String TIME_DATE = "Insert the time available fot the date {} in format [hh:mm] 24 Hrs.";
+    private static final String TIME_CORRECT = "Your time {} is correct? 1) Correct - 2) Incorrect";
     private static final String DATE_CORRECT = "Your date {} is correct? 1) Correct - 2) Incorrect";
     private static final String INSERT_DATE_AVAILABLE = "Insert the date available: [dd/mm/yyyy]";
     private static final String ADD_AVAILABLE_APPOINTMENT = "-> Add available appointment";
@@ -12,6 +17,8 @@ public class UIDoctorMenu implements IMenuable {
     private static final String LOGOUT = "0. Logout";
     private static final String RETURN = "0. Return";
 
+    private static final ArrayList<Doctor> doctorsAvailableAppointments = new ArrayList<>();
+
     public void showMenu() {
         int response;
 
@@ -22,17 +29,27 @@ public class UIDoctorMenu implements IMenuable {
             LOGGER.info(LOGOUT);
             response = Integer.parseInt(sc.nextLine());
 
-            if (response == 0) {
-                UIMenu menu = new UIMenu();
-                menu.showMenu();
-            } else if (response == 2) {
-                showAddAvailableAppointmentsMenu();
+            switch (response) {
+                case 0:
+                    UIMenu menu = new UIMenu();
+                    menu.showMenu();
+                    break;
+                case 1:
+                    showAddAvailableAppointmentsMenu();
+                    break;
+                case 2:
+                    showScheduleAppointments();
+                    break;
             }
         } while (response != 0);
     }
 
     private static void showAddAvailableAppointmentsMenu() {
+        int responseDate;
+        int responseTime;
         int response;
+        String time;
+        String date;
 
         do {
             LOGGER.info(ADD_AVAILABLE_APPOINTMENT);
@@ -50,12 +67,40 @@ public class UIDoctorMenu implements IMenuable {
                 LOGGER.info(SHOW_MONTHS, response, UIMenu.MONTHS[response - 1]);
                 LOGGER.info(INSERT_DATE_AVAILABLE);
 
-                String date = sc.nextLine();
+                date = sc.nextLine();
                 LOGGER.info(DATE_CORRECT, date);
+                responseDate = Integer.parseInt(sc.nextLine());
+
+                if (responseDate == 2) {
+                    continue;
+                }
+
+                do {
+                    LOGGER.info(TIME_DATE, date);
+                    time = sc.nextLine();
+                    LOGGER.info(TIME_CORRECT, time);
+                    responseTime = Integer.parseInt(sc.nextLine());
+                } while (responseTime == 2);
+
+                UIMenu.doctorLogged.addAvailableAppointment(date, time);
+                checkDoctorAvailableAppointment(UIMenu.doctorLogged);
             } else if (response == 0) {
                 UIDoctorMenu doctorMenu = new UIDoctorMenu();
                 doctorMenu.showMenu();
             }
         } while (response != 0);
+    }
+
+    private static void checkDoctorAvailableAppointment(Doctor doctor) {
+        if (doctor.getAvailableAppointment().size() > 0 && !doctorsAvailableAppointments.contains(doctor)) {
+            doctorsAvailableAppointments.add(doctor);
+        }
+    }
+
+    private static void showScheduleAppointments() {
+        ArrayList<Doctor.AvailableAppointment> availableAppointments = UIMenu.doctorLogged.getAvailableAppointment();
+        for (Doctor.AvailableAppointment availableAppointment : availableAppointments) {
+            LOGGER.info(availableAppointment.toString());
+        }
     }
 }
